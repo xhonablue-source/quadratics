@@ -1,540 +1,394 @@
-"Determining peak performance conditions in athletic events"
-                   ],
-                   "assessment_criteria": [
-                       "Completes the square accurately for any quadratic",
-                       "Transforms to (x-p)² = q form correctly",
-                       "Uses completed square form to solve equations",
-                       "Applies technique to optimization problems"
-                   ],
-                   "mastery_levels": {
-                       "Beginning": "Completes square for x² + bx + c with even b values",
-                       "Developing": "Completes square for any monic quadratic",
-                       "Proficient": "Completes square for any quadratic expression",
-                       "Advanced": "Applies completing square to multi-step optimization"
-                   }
-               },
-               "F-IF.C.7.a": {
-                   "full_text": "Graph linear and quadratic functions and show intercepts, maxima, and minima.",
-                   "quadratic_focus": "Students graph quadratic functions and identify key features including vertex, intercepts, and axis of symmetry.",
-                   "sports_applications": [
-                       "Graphing athlete performance over time",
-                       "Visualizing trajectory paths in various sports",
-                       "Analyzing optimal performance windows"
-                   ],
-                   "assessment_criteria": [
-                       "Accurately graphs quadratic functions",
-                       "Identifies and labels vertex, intercepts, axis of symmetry",
-                       "Connects graph features to real-world meaning"
-                   ],
-                   "mastery_levels": {
-                       "Beginning": "Graphs simple quadratics using table of values",
-                       "Developing": "Graphs quadratics and identifies basic features",
-                       "Proficient": "Graphs efficiently using vertex form and key features",
-                       "Advanced": "Analyzes complex sports data through graphical interpretation"
-                   }
-               },
-               "F-IF.C.8.a": {
-                   "full_text": "Use the process of factoring and completing the square in a quadratic function to show zeros, extreme values, and symmetry of the graph, and interpret these in terms of a context.",
-                   "quadratic_focus": "Students use completing the square to reveal and interpret key features of quadratic functions.",
-                   "sports_applications": [
-                       "Finding optimal angles for maximum range in projectile sports",
-                       "Determining peak performance timing in training cycles",
-                       "Analyzing symmetry in bilateral athletic movements"
-                   ],
-                   "assessment_criteria": [
-                       "Uses completing the square to find vertex form",
-                       "Interprets vertex as maximum/minimum in context",
-                       "Explains symmetry and its meaning in applications",
-                       "Connects algebraic and graphical representations"
-                   ],
-                   "mastery_levels": {
-                       "Beginning": "Identifies vertex from completed square form",
-                       "Developing": "Interprets vertex meaning in simple contexts",
-                       "Proficient": "Analyzes all key features and their contextual meaning",
-                       "Advanced": "Synthesizes multiple representations for complex problem solving"
-                   }
-               }
-           },
-           "Mathematical Practices": {
-               "MP1": {
-                   "full_text": "Make sense of problems and persevere in solving them.",
-                   "quadratic_focus": "Students analyze sports performance problems involving quadratics and persist through multi-step solutions.",
-                   "sports_applications": [
-                       "Breaking down complex trajectory optimization problems",
-                       "Analyzing multi-variable athletic performance scenarios",
-                       "Persisting through challenging equipment design calculations"
-                   ]
-               },
-               "MP2": {
-                   "full_text": "Reason abstractly and quantitatively.",
-                   "quadratic_focus": "Students move flexibly between abstract quadratic expressions and quantitative sports contexts.",
-                   "sports_applications": [
-                       "Connecting abstract vertex form to concrete optimal performance",
-                       "Interpreting coefficients in terms of physical sports parameters",
-                       "Reasoning about units and scale in athletic measurements"
-                   ]
-               },
-               "MP4": {
-                   "full_text": "Model with mathematics.",
-                   "quadratic_focus": "Students create and use quadratic models to represent sports phenomena.",
-                   "sports_applications": [
-                       "Developing trajectory models for various sports",
-                       "Creating performance optimization models for athletes",
-                       "Building equipment efficiency models using quadratics"
-                   ]
-               },
-               "MP7": {
-                   "full_text": "Look for and make use of structure.",
-                   "quadratic_focus": "Students recognize quadratic structure and use it strategically in sports applications.",
-                   "sports_applications": [
-                       "Recognizing parabolic patterns in sports data",
-                       "Using quadratic structure to predict performance trends",
-                       "Leveraging symmetry properties in bilateral sports analysis"
-                   ]
-               }
-           }
-       }
-       
-       # Interactive standards explorer
-       standards_category = st.selectbox("Standards Category:", 
-                                       ["High School Algebra", "Mathematical Practices"])
-       
-       if standards_category in detailed_standards:
-           for standard_id, standard_info in detailed_standards[standards_category].items():
-               with st.expander(f"📋 {standard_id}: {standard_info.get('full_text', '')[:60]}..."):
-                   
-                   # Full standard text
-                   st.markdown(f"**Full Standard:** {standard_info['full_text']}")
-                   
-                   # Quadratic focus
-                   if 'quadratic_focus' in standard_info:
-                       st.markdown(f"**Quadratic Functions Focus:** {standard_info['quadratic_focus']}")
-                   
-                   # Sports applications
-                   if 'sports_applications' in standard_info:
-                       st.markdown("**Sports Applications:**")
-                       for app in standard_info['sports_applications']:
-                           st.markdown(f"• {app}")
-                   
-                   # Assessment criteria
-                   if 'assessment_criteria' in standard_info:
-                       st.markdown("**Assessment Criteria:**")
-                       for criteria in standard_info['assessment_criteria']:
-                           st.markdown(f"✓ {criteria}")
-                   
-                   # Mastery levels
-                   if 'mastery_levels' in standard_info:
-                       st.markdown("**Mastery Progression:**")
-                       for level, description in standard_info['mastery_levels'].items():
-                           if level == "Advanced":
-                               st.success(f"**{level}:** {description}")
-                           elif level == "Proficient":
-                               st.info(f"**{level}:** {description}")
-                           elif level == "Developing":
-                               st.warning(f"**{level}:** {description}")
-                           else:
-                               st.error(f"**{level}:** {description}")
-                   
-                   # Check if student has mastered this standard
-                   if standard_id in st.session_state.standards_mastered:
-                       st.success("🏆 You have demonstrated mastery of this standard!")
-                   else:
-                       st.info("💪 Complete activities to demonstrate mastery of this standard.")
-   
-   elif resource_type == "Assessment Rubrics":
-       st.markdown("### 📊 Standards-Based Assessment Rubrics")
-       
-       st.markdown("""
-       **Use these rubrics to assess student mastery of quadratic functions through sports applications.**
-       """)
-       
-       rubric_focus = st.selectbox("Rubric Focus Area:", [
-           "Completing the Square Mastery",
-           "Vertex Form Applications", 
-           "Sports Problem Solving",
-           "Mathematical Communication",
-           "Technology Integration"
-       ])
-       
-       if rubric_focus == "Completing the Square Mastery":
-           st.markdown("""
-           #### 🎯 Completing the Square Mastery Rubric (A-REI.B.4.a)
-           """)
-           
-           rubric_data = {
-               "Criteria": [
-                   "Process Accuracy",
-                   "Method Understanding", 
-                   "Application to Sports",
-                   "Error Analysis",
-                   "Communication"
-               ],
-               "Exemplary (4)": [
-                   "Completes square flawlessly for any quadratic, including complex coefficients",
-                   "Explains why each step works and connects to vertex form properties",
-                   "Applies technique to solve complex sports optimization problems independently",
-                   "Identifies and corrects errors, explains common misconceptions",
-                   "Uses precise mathematical language and multiple representations"
-               ],
-               "Proficient (3)": [
-                   "Completes square accurately for most quadratics with minor computational errors",
-                   "Demonstrates solid understanding of the process and its purpose",
-                   "Applies to sports problems with guidance, makes connections to optimization",
-                   "Recognizes some errors and attempts corrections",
-                   "Communicates clearly using appropriate mathematical vocabulary"
-               ],
-               "Developing (2)": [
-                   "Completes square for simple cases, struggles with complex coefficients",
-                   "Shows partial understanding, may skip steps or use shortcuts incorrectly",
-                   "Applies to basic sports problems with significant support",
-                   "Limited error recognition, difficulty with self-correction",
-                   "Basic communication with some mathematical language"
-               ],
-               "Beginning (1)": [
-                   "Attempts process but makes frequent errors, may not reach vertex form",
-                   "Shows minimal understanding of why the process works",
-                   "Cannot apply to sports contexts without extensive guidance",
-                   "Unaware of errors, does not attempt corrections",
-                   "Limited mathematical communication, relies on informal language"
-               ]
-           }
-           
-           # Display as interactive table
-           rubric_df = pd.DataFrame(rubric_data)
-           st.dataframe(rubric_df, use_container_width=True)
-           
-           # Assessment tools
-           st.markdown("#### 🔧 Assessment Tools")
-           
-           col1, col2 = st.columns(2)
-           with col1:
-               st.markdown("""
-               **Quick Assessment Questions:**
-               1. Complete the square: 2x² + 12x + 10
-               2. A basketball trajectory follows h(x) = -0.05x² + 1.2x + 6. Find the maximum height.
-               3. Explain why completing the square reveals the vertex.
-               4. What errors do you see in this work? [Show common mistake]
-               """)
-           
-           with col2:
-               st.markdown("""
-               **Performance Task:**
-               Design an optimal basketball shot using completing the square to:
-               - Find the peak height of the trajectory
-               - Determine the optimal release distance
-               - Explain your mathematical reasoning
-               - Compare different shooting angles
-               """)
-       
-       elif rubric_focus == "Sports Problem Solving":
-           st.markdown("""
-           #### 🏀 Sports Application Problem Solving Rubric
-           """)
-           
-           sports_rubric = {
-               "Mathematical Modeling": [
-                   "Creates sophisticated quadratic models from sports scenarios with appropriate variables and constraints",
-                   "Develops accurate quadratic models with minor gaps in variable identification",
-                   "Creates basic quadratic models with guidance and some inaccuracies",
-                   "Struggles to create appropriate mathematical models from sports contexts"
-               ],
-               "Problem Solving Strategy": [
-                   "Selects and applies optimal strategies, shows multiple solution paths",
-                   "Uses appropriate strategies effectively, may show one primary solution method",
-                   "Uses strategies with guidance, shows partial understanding of approach",
-                   "Limited strategy use, requires significant support to make progress"
-               ],
-               "Sports Context Integration": [
-                   "Seamlessly integrates mathematical solutions with sports reality, considers practical constraints",
-                   "Makes clear connections between math and sports, considers most practical aspects",
-                   "Makes basic connections between math and sports with some guidance",
-                   "Struggles to connect mathematical solutions to sports contexts"
-               ],
-               "Optimization Analysis": [
-                   "Identifies and explains optimal conditions using vertex form, considers trade-offs",
-                   "Finds optimal conditions accurately, explains significance in sports context",
-                   "Identifies optimal conditions with support, basic explanation of meaning",
-                   "Cannot identify or explain optimal conditions in sports applications"
-               ]
-           }
-           
-           for criteria, levels in sports_rubric.items():
-               st.markdown(f"**{criteria}:**")
-               col1, col2, col3, col4 = st.columns(4)
-               with col1:
-                   st.success(f"**Exemplary (4):** {levels[0]}")
-               with col2:
-                   st.info(f"**Proficient (3):** {levels[1]}")
-               with col3:
-                   st.warning(f"**Developing (2):** {levels[2]}")
-               with col4:
-                   st.error(f"**Beginning (1):** {levels[3]}")
-               st.markdown("---")
-   
-   elif resource_type == "Lesson Plan Templates":
-       st.markdown("### 📝 Standards-Aligned Lesson Plan Templates")
-       
-       lesson_type = st.selectbox("Lesson Template Type:", [
-           "Completing the Square Introduction",
-           "Sports Optimization Project",
-           "Real Data Analysis Lesson",
-           "Technology Integration",
-           "Assessment & Review"
-       ])
-       
-       if lesson_type == "Completing the Square Introduction":
-           st.markdown("""
-           #### 📋 Lesson Plan: Introduction to Completing the Square through Basketball
-           
-           **Grade Level:** 9-11 (Algebra 1/2)  
-           **Duration:** 50 minutes  
-           **Standards:** A-REI.B.4.a, F-IF.C.8.a, MP1, MP4, MP7
-           """)
-           
-           lesson_plan = {
-               "Learning Objectives": [
-                   "Students will complete the square for quadratic expressions",
-                   "Students will convert quadratic functions to vertex form", 
-                   "Students will interpret the vertex in sports contexts",
-                   "Students will apply completing the square to optimize basketball shot trajectories"
-               ],
-               "Materials Needed": [
-                   "Basketball or ball for demonstration",
-                   "Graphing technology (calculators or computers)",
-                   "Student worksheet with practice problems",
-                   "Real basketball trajectory data (optional)",
-                   "Poster paper for group work"
-               ],
-               "Lesson Sequence": [
-                   "**Hook (5 min):** Basketball shot demonstration - 'What makes the perfect shot?'",
-                   "**Explore (10 min):** Graph basketball trajectory data, notice parabolic shape",
-                   "**Explain (15 min):** Introduce completing the square with basketball equation",
-                   "**Elaborate (15 min):** Students practice with guided worksheet",
-                   "**Evaluate (5 min):** Quick exit ticket on vertex interpretation"
-               ],
-               "Assessment Strategies": [
-                   "Formative: Circulate during practice, check student work",
-                   "Formative: Exit ticket asking for vertex interpretation",
-                   "Summative: Problem set including sports applications",
-                   "Performance: Students create their own sports optimization problem"
-               ],
-               "Differentiation": [
-                   "Advanced: Explore multiple sports, compare optimization strategies",
-                   "On-level: Follow guided practice with basketball focus",
-                   "Struggling: Use algebra tiles or area models for visual support",
-                   "ELL: Provide vocabulary support and visual representations"
-               ],
-               "Technology Integration": [
-                   "Graphing calculators for visualization",
-                   "Online trajectory simulators",
-                   "Spreadsheet software for data analysis",
-                   "Interactive quadratic manipulatives"
-               ],
-               "Extension Activities": [
-                   "Research optimal shooting angles for different players",
-                   "Compare trajectories across different sports",
-                   "Design equipment based on quadratic optimization",
-                   "Create presentation on sports mathematics"
-               ]
-           }
-           
-           for section, items in lesson_plan.items():
-               st.markdown(f"**{section}:**")
-               for item in items:
-                   st.markdown(f"• {item}")
-               st.markdown("")
-           
-           # Downloadable resources
-           st.markdown("#### 📥 Downloadable Resources")
-           st.info("""
-           **Available Resources:**
-           - Student practice worksheet with basketball problems
-           - Teacher answer key with step-by-step solutions
-           - Assessment rubric aligned to standards
-           - Extension project guidelines
-           - Technology setup instructions
-           """)
-   
-   elif resource_type == "Professional Development":
-       st.markdown("### 👨‍🎓 Professional Development Resources")
-       
-       pd_focus = st.selectbox("Professional Development Focus:", [
-           "Teaching Quadratics through Sports",
-           "Standards-Based Assessment",
-           "Technology Integration",
-           "Research-Based Practices",
-           "Differentiation Strategies"
-       ])
-       
-       if pd_focus == "Teaching Quadratics through Sports":
-           st.markdown("""
-           #### 🏆 Professional Development: Sports-Based Quadratic Instruction
-           """)
-           
-           # PD module structure
-           pd_modules = {
-               "Module 1: Mathematical Foundations": {
-                   "Duration": "2 hours",
-                   "Objectives": [
-                       "Review quadratic function concepts and representations",
-                       "Master completing the square technique", 
-                       "Understand connections between algebraic and graphical features",
-                       "Practice common student misconceptions and remediation"
-                   ],
-                   "Activities": [
-                       "Hands-on completing the square practice",
-                       "Error analysis workshop",
-                       "Multiple representations exploration",
-                       "Standards alignment mapping"
-                   ]
-               },
-               "Module 2: Sports Applications": {
-                   "Duration": "3 hours", 
-                   "Objectives": [
-                       "Explore authentic sports contexts for quadratic applications",
-                       "Develop sports-based problem sequences",
-                       "Create real-world connections for student engagement",
-                       "Design performance-based assessments"
-                   ],
-                   "Activities": [
-                       "Sports trajectory analysis workshop",
-                       "Problem development collaborative session",
-                       "Assessment design practice",
-                       "Technology tools exploration"
-                   ]
-               },
-               "Module 3: Implementation Strategies": {
-                   "Duration": "2 hours",
-                   "Objectives": [
-                       "Plan unit sequences with sports integration",
-                       "Develop differentiation strategies",
-                       "Create assessment rubrics and tools", 
-                       "Build parent and administrator communication"
-                   ],
-                   "Activities": [
-                       "Unit planning workshop",
-                       "Differentiation strategy sharing",
-                       "Assessment calibration",
-                       "Implementation planning"
-                   ]
-               }
-           }
-           
-           for module, details in pd_modules.items():
-               with st.expander(f"📖 {module} - {details['Duration']}"):
-                   st.markdown("**Learning Objectives:**")
-                   for obj in details['Objectives']:
-                       st.markdown(f"• {obj}")
-                   
-                   st.markdown("**Workshop Activities:**")
-                   for activity in details['Activities']:
-                       st.markdown(f"• {activity}")
-           
-           # Certification pathway
-           st.markdown("#### 🎓 Certification Pathway")
-           st.info("""
-           **MathCraft Sports Pro Certification Requirements:**
-           ✓ Complete all three professional development modules  
-           ✓ Implement sports-based quadratic unit in classroom  
-           ✓ Submit reflection portfolio with student work samples  
-           ✓ Participate in peer observation and feedback cycle  
-           ✓ Present at local or regional mathematics conference  
-           
-           **Benefits:**
-           - 15 professional development hours
-           - Digital badge for LinkedIn/resume
-           - Access to exclusive resources and community
-           - Priority support for implementation
-           """)
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+import math
+import random
+import time
+from datetime import datetime, timedelta
 
-# Footer with comprehensive educational impact
-st.markdown("---")
+# Configure page
+st.set_page_config(
+    page_title="MathCraft Sports Pro | Quadratics & Athletic Performance",
+    page_icon="🏆",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Custom CSS for professional styling
 st.markdown("""
-<div class="standards-box">
-<h3>🎓 Educational Impact & Standards Mastery</h3>
+<style>
+    .main-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        padding: 2.5rem;
+        border-radius: 15px;
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .section-header {
+        background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+        padding: 1.5rem;
+        border-radius: 10px;
+        color: white;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .standards-box {
+        background: linear-gradient(145deg, #e8f5e8 0%, #f0f8ff 100%);
+        border: 2px solid #4caf50;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+    .achievement-badge {
+        background: linear-gradient(45deg, #ff6b6b, #feca57);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: bold;
+        display: inline-block;
+        margin: 0.25rem;
+    }
+    .formula-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+        font-family: 'Courier New', monospace;
+    }
+    .performance-metric {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 1rem;
+        border-radius: 8px;
+        text-align: center;
+        margin: 0.5rem;
+    }
+    .university-level {
+        border-left: 4px solid #667eea;
+        background: #f8f9fa;
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+</style>
+""", unsafe_allow_html=True)
 
-<strong>📊 Learning Outcomes Achieved:</strong><br>
-✅ Master completing the square through engaging sports applications<br>
-✅ Convert between standard, vertex, and factored forms of quadratics<br>
-✅ Apply mathematical optimization to real-world athletic scenarios<br>
-✅ Interpret mathematical results in practical sports contexts<br>
-✅ Develop problem-solving skills through authentic applications<br><br>
+# Initialize session state for progress tracking
+def initialize_session_state():
+    defaults = {
+        'student_name': '',
+        'course_level': 'High School',
+        'grade_level': '9th Grade',
+        'standards_focus': 'Common Core',
+        'sports_interests': [],
+        'research_focus': 'Performance Optimization',
+        'total_problems_solved': 0,
+        'sports_analyzed': set(),
+        'achievements': [],
+        'session_start': time.time(),
+        'trajectory_points': 0,
+        'optimization_score': 0,
+        'research_projects': [],
+        'peer_collaborations': 0,
+        'current_sport': 'Basketball',
+        'difficulty_level': 'Intermediate',
+        'real_data_analyzed': False,
+        'university_modules_completed': set(),
+        'study_groups_joined': [],
+        'research_papers_read': 0,
+        'peer_reviews_completed': 0,
+        'mentorship_sessions': 0,
+        'standards_mastered': set()
+    }
+    
+    for key, value in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = value
 
-<strong>📋 Standards Alignment Summary:</strong><br>
-- <strong>A-SSE.A.2:</strong> Use structure of expressions for strategic rewriting<br>
-- <strong>A-SSE.B.3.a:</strong> Factor quadratics to reveal zeros and intercepts<br>
-- <strong>A-REI.B.4.a:</strong> Master completing the square technique<br>
-- <strong>F-IF.C.7.a:</strong> Graph quadratics showing key features<br>
-- <strong>F-IF.C.8.a:</strong> Use vertex form to analyze quadratic properties<br>
-- <strong>MP1, MP2, MP4, MP7:</strong> Mathematical practices through sports modeling<br><br>
+initialize_session_state()
 
-<strong>🎯 Assessment & Mastery Tracking:</strong><br>
-Interactive progress monitoring aligned to standards expectations<br>
-Performance-based assessments using authentic sports scenarios<br>
-Differentiated learning paths for diverse student needs<br>
-Real-time feedback and adaptive challenge levels<br><br>
+# Enhanced achievement system
+def check_achievements():
+    new_achievements = []
+    
+    achievements_criteria = {
+        "Quadratic Explorer": st.session_state.total_problems_solved >= 1,
+        "Sports Analyst": len(st.session_state.sports_analyzed) >= 3,
+        "Optimization Expert": st.session_state.optimization_score >= 50,
+        "Research Scholar": len(st.session_state.research_projects) >= 1,
+        "Team Player": st.session_state.peer_collaborations >= 5,
+        "Standards Master": len(st.session_state.standards_mastered) >= 5,
+        "Data Scientist": st.session_state.real_data_analyzed,
+        "Quadratics Olympian": st.session_state.total_problems_solved >= 25,
+        "Collaborative Learner": len(st.session_state.study_groups_joined) >= 2,
+        "Academic Reader": st.session_state.research_papers_read >= 5,
+        "Peer Reviewer": st.session_state.peer_reviews_completed >= 3,
+        "Common Core Champion": "Common Core" in st.session_state.standards_focus,
+        "Advanced Modeler": st.session_state.optimization_score >= 100,
+        "Multi-Sport Expert": len(st.session_state.sports_analyzed) >= 5
+    }
+    
+    for achievement, criteria in achievements_criteria.items():
+        if criteria and achievement not in st.session_state.achievements:
+            new_achievements.append(achievement)
+            st.session_state.achievements.append(achievement)
+    
+    return new_achievements
 
-<strong>💡 Professional Impact:</strong><br>
-Increase student engagement through relevant applications<br>
-Meet rigorous academic standards through innovative teaching<br>
-Prepare students for STEM careers and advanced mathematics<br>
-Build 21st-century problem-solving and critical thinking skills
+# Calculate user level based on total points
+def calculate_user_level():
+    total_points = (st.session_state.total_problems_solved * 5 + 
+                   st.session_state.optimization_score + 
+                   len(st.session_state.research_projects) * 25 +
+                   st.session_state.peer_collaborations * 2 +
+                   len(st.session_state.standards_mastered) * 10)
+    
+    if total_points < 50:
+        return "Novice", 1
+    elif total_points < 150:
+        return "Intermediate", 2
+    elif total_points < 300:
+        return "Advanced", 3
+    elif total_points < 500:
+        return "Expert", 4
+    else:
+        return "Master", 5
+
+# Main header with updated name
+st.markdown("""
+<div class="main-header">
+    <h1>🏆 MathCraft Sports Pro: Quadratics & Athletic Performance</h1>
+    <h3>Master Quadratic Functions Through Real-World Sports Applications</h3>
+    <p>Completing the Square • Vertex Form • Parabolic Trajectories • Sports Analytics • Standards-Aligned Learning</p>
 </div>
 """, unsafe_allow_html=True)
 
-# Session summary
-if st.session_state.student_name:
-   st.markdown(f"""
-   ### 🏆 Session Summary for {st.session_state.student_name}
-   
-   **📈 Standards Progress:**
-   - **Standards Mastered:** {len(st.session_state.standards_mastered)} of 10 core standards
-   - **Problems Solved:** {st.session_state.total_problems_solved}
-   - **Sports Analyzed:** {', '.join(st.session_state.sports_analyzed) if st.session_state.sports_analyzed else 'None yet'}
-   - **Optimization Score:** {st.session_state.optimization_score} points
-   - **Current Level:** Level {calculate_user_level()[1]} {calculate_user_level()[0]}
-   
-   **🎯 Next Learning Goals:**
-   - Master remaining Common Core standards through sports applications
-   - Complete advanced research projects using real sports data
-   - Collaborate with peers on optimization challenges
-   - Apply quadratic modeling to personal sports interests
-   
-   **🌟 Achievement Highlights:**
-   {f"🏆 Recent Achievement: {st.session_state.achievements[-1]}" if st.session_state.achievements else "Complete your first activity to earn achievements!"}
-   """)
+# Enhanced student profile setup
+if not st.session_state.student_name:
+    with st.container():
+        st.markdown("""
+        <div class="standards-box">
+        <h2>👋 Welcome to MathCraft Sports Pro: Quadratics & Athletic Performance!</h2>
+        <p>Master quadratic functions through engaging sports applications while meeting rigorous academic standards.</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("### 📋 Student Profile")
+            name = st.text_input("Student Name:", placeholder="Enter your full name", key="name_input")
+            
+            # Enhanced grade level selection
+            grade_level = st.selectbox("Grade Level:", 
+                                     ["8th Grade", "9th Grade (Algebra 1)", "10th Grade (Geometry)", 
+                                      "11th Grade (Algebra 2)", "12th Grade (Pre-Calculus)",
+                                      "College Freshman", "College Sophomore", "Advanced Placement"])
+            
+            # Comprehensive standards selection
+            standards_focus = st.selectbox("Educational Standards:", [
+                "Common Core State Standards (CCSS)",
+                "Next Generation Science Standards (NGSS)", 
+                "Texas Essential Knowledge and Skills (TEKS)",
+                "California State Standards",
+                "International Baccalaureate (IB)",
+                "Advanced Placement (AP) Standards",
+                "Australian Curriculum",
+                "UK National Curriculum",
+                "Ontario Curriculum (Canada)",
+                "University/College Level"
+            ])
+        
+        with col2:
+            st.markdown("### 🎯 Learning Focus")
+            
+            # Sports interests
+            interests = st.multiselect("Sports of Interest:", 
+                                     ["Basketball", "Soccer", "Tennis", "Football", "Golf", 
+                                      "Baseball", "Track & Field", "Swimming", "Volleyball", 
+                                      "Hockey", "Archery", "Other"],
+                                     default=["Basketball"])
+            
+            # Mathematical focus areas
+            math_focus = st.multiselect("Quadratic Function Focus Areas:", [
+                "Completing the Square",
+                "Vertex Form",
+                "Factoring Quadratics", 
+                "Quadratic Formula",
+                "Graphing Parabolas",
+                "Real-World Applications",
+                "Optimization Problems",
+                "Systems with Quadratics"
+            ], default=["Completing the Square", "Vertex Form"])
+            
+            # Learning style
+            learning_style = st.selectbox("Preferred Learning Style:", [
+                "Visual (Graphs & Charts)",
+                "Kinesthetic (Hands-On)",
+                "Analytical (Step-by-Step)",
+                "Collaborative (Group Work)",
+                "Independent (Self-Paced)"
+            ])
+        
+        institution = st.text_input("School/Institution:", placeholder="School name (optional)")
+        
+        if st.button("🚀 Begin Quadratic Mastery Journey!", type="primary") and name:
+            st.session_state.student_name = name
+            st.session_state.grade_level = grade_level
+            st.session_state.standards_focus = standards_focus
+            st.session_state.sports_interests = interests
+            st.session_state.math_focus = math_focus
+            st.session_state.learning_style = learning_style
+            st.session_state.institution = institution
+            st.rerun()
 
-# Export/save functionality
-if st.session_state.student_name and len(st.session_state.standards_mastered) > 0:
-   if st.button("📄 Generate Progress Report"):
-       progress_report = f"""
-       MATHCRAFT SPORTS PRO: QUADRATICS & ATHLETIC PERFORMANCE
-       Student Progress Report
-       
-       Student: {st.session_state.student_name}
-       Grade Level: {st.session_state.grade_level}
-       Standards Focus: {st.session_state.standards_focus}
-       Date: {datetime.now().strftime("%Y-%m-%d")}
-       
-       STANDARDS MASTERY:
-       {chr(10).join([f"✓ {standard}" for standard in st.session_state.standards_mastered])}
-       
-       PERFORMANCE METRICS:
-       - Problems Solved: {st.session_state.total_problems_solved}
-       - Sports Analyzed: {len(st.session_state.sports_analyzed)}
-       - Optimization Score: {st.session_state.optimization_score}
-       - Research Projects: {len(st.session_state.research_projects)}
-       
-       ACHIEVEMENTS EARNED:
-       {chr(10).join([f"🏆 {achievement}" for achievement in st.session_state.achievements])}
-       
-       Generated by MathCraft Sports Pro: Quadratics & Athletic Performance
-       Standards-aligned mathematics education through sports applications
-       """
-       
-       st.download_button(
-           label="📥 Download Progress Report",
-           data=progress_report,
-           file_name=f"mathcraft_progress_{st.session_state.student_name.replace(' ', '_')}.txt",
-           mime="text/plain"
-       )
+# Enhanced sidebar navigation and progress
+st.sidebar.title("🎯 Quadratics Navigation")
+if st.session_state.student_name:
+    user_level, level_num = calculate_user_level()
+    st.sidebar.markdown(f"**Welcome, {st.session_state.student_name}!** 👋")
+    st.sidebar.markdown(f"*{st.session_state.grade_level} • {st.session_state.standards_focus}*")
+    st.sidebar.markdown(f"*Level {level_num} {user_level}*")
+
+# Standards-aligned navigation
+section = st.sidebar.selectbox(
+    "Select Learning Module:",
+    [
+        "📚 Quadratic Theory Hub",
+        "🔬 Interactive Lab", 
+        "🏀 Sports Analysis Center",
+        "📊 Real Data Analytics",
+        "🎯 Optimization Studio",
+        "🔬 Research Projects",
+        "🏆 Performance Dashboard",
+        "📖 Standards & Resources",
+        "👥 Collaboration Center",
+        "🎓 Standards Tracker"
+    ]
+)
+
+# Enhanced settings with standards focus
+st.sidebar.markdown("---")
+st.sidebar.markdown("### ⚙️ Learning Settings")
+
+# Standards-based difficulty
+if "Common Core" in st.session_state.standards_focus:
+    difficulty_options = ["Algebra 1 (9th)", "Geometry (10th)", "Algebra 2 (11th)", "Pre-Calc (12th)", "College"]
+elif "AP" in st.session_state.standards_focus:
+    difficulty_options = ["AP Algebra", "AP Calculus AB", "AP Calculus BC", "AP Statistics"]
+else:
+    difficulty_options = ["Beginner", "Intermediate", "Advanced", "University", "Graduate"]
+
+st.session_state.difficulty_level = st.sidebar.selectbox("Difficulty Level:", difficulty_options)
+
+st.session_state.current_sport = st.sidebar.selectbox(
+    "Primary Sport Focus:",
+    ["Basketball", "Soccer", "Tennis", "Football", "Golf", "Baseball", "Track & Field", "Volleyball"]
+)
+
+# Standards mastery tracking
+st.sidebar.markdown("### 📋 Standards Mastered")
+if st.session_state.standards_mastered:
+    for standard in list(st.session_state.standards_mastered)[:3]:
+        st.sidebar.success(f"✅ {standard}")
+else:
+    st.sidebar.info("Complete activities to master standards!")
+
+# Enhanced progress tracking
+st.sidebar.markdown("### 📈 Progress Overview")
+col1, col2 = st.sidebar.columns(2)
+with col1:
+    st.metric("Problems", st.session_state.total_problems_solved)
+    st.metric("Standards", len(st.session_state.standards_mastered))
+    st.metric("Level", level_num)
+with col2:
+    st.metric("Points", st.session_state.optimization_score)
+    st.metric("Projects", len(st.session_state.research_projects))
+    st.metric("Achievements", len(st.session_state.achievements))
+
+# Session time
+session_time = time.time() - st.session_state.session_start
+hours, remainder = divmod(session_time, 3600)
+minutes, _ = divmod(remainder, 60)
+st.sidebar.metric("Session Time", f"{int(hours):02d}:{int(minutes):02d}")
+
+# Display recent achievements
+if st.session_state.achievements:
+    st.sidebar.markdown("### 🏆 Recent Achievements")
+    for achievement in st.session_state.achievements[-3:]:
+        st.sidebar.markdown(f'<div class="achievement-badge">{achievement}</div>', unsafe_allow_html=True)
+
+# Quick actions
+st.sidebar.markdown("### ⚡ Quick Actions")
+if st.sidebar.button("📊 View Standards Progress"):
+    section = "🎓 Standards Tracker"
+if st.sidebar.button("🔬 Practice Quadratics"):
+    section = "🔬 Interactive Lab"
+
+# Check for new achievements
+new_achievements = check_achievements()
+for achievement in new_achievements:
+    st.sidebar.success(f"🏆 New Achievement: {achievement}!")
+
+# Simple interactive demonstration
+st.markdown("### 🎯 Quick Quadratics Demo")
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("**Adjust the quadratic function:**")
+    a = st.slider("Coefficient a", -2.0, 2.0, -0.5, 0.1)
+    b = st.slider("Coefficient b", -5.0, 5.0, 2.0, 0.5)
+    c = st.slider("Coefficient c", -10.0, 10.0, 5.0, 0.5)
+    
+    if a != 0:
+        h = -b / (2 * a)
+        k = a * h**2 + b * h + c
+        
+        st.markdown(f"""
+        **Standard Form:** f(x) = {a}x² + {b}x + {c}
+        
+        **Vertex Form:** f(x) = {a}(x - {h:.2f})² + {k:.2f}
+        
+        **Vertex:** ({h:.2f}, {k:.2f})
+        """)
+
+with col2:
+    if a != 0:
+        # Create simple plot
+        fig, ax = plt.subplots(figsize=(8, 6))
+        
+        x = np.linspace(h - 5, h + 5, 100)
+        y = a * x**2 + b * x + c
+        
+        ax.plot(x, y, 'blue', linewidth=3, label=f'f(x) = {a}x² + {b}x + {c}')
+        ax.plot(h, k, 'ro', markersize=10, label=f'Vertex ({h:.2f}, {k:.2f})')
+        
+        ax.set_xlabel('x')
+        ax.set_ylabel('f(x)')
+        ax.set_title('Quadratic Function Visualization')
+        ax.grid(True, alpha=0.3)
+        ax.legend()
+        
+        st.pyplot(fig)
+
+# Progress tracking
+if st.session_state.student_name:
+    st.session_state.total_problems_solved += 1
+    st.session_state.standards_mastered.add("A-SSE.A.2")
+
+st.markdown("---")
+st.markdown("""
+### 🎓 MathCraft Sports Pro: Quadratics & Athletic Performance
+
+**Standards-Aligned Learning:**  
+✅ Common Core State Standards Aligned  
+✅ Real-World Sports Applications  
+✅ Interactive Problem Solving  
+✅ Progress Tracking & Assessment  
+
+*Transform quadratic functions education through engaging sports mathematics!*
+""")
